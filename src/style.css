@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Gruppo&family=Montserrat+Subrayada&family=Rubik+Maze&family=Zeyada&display=swap');
+
+.header {
+    height: 140px;
+    width: 100vw;
+    background-color: #41506062;
+    display: grid;
+    grid-template-columns: repeat (3, 600px);
+    grid-template-rows: repeat (4, 1fr);
+    /* justify-content: space-between; */
+    color: white;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.charactersDiv > img {
+    max-width: 30px;
+}
+
+.newGame {
+    grid-row: 1/3;
+    grid-column: 1/2;
+}
+
+.bestScores {
+    grid-row: 3/5;
+    grid-column: 1/2;
+}
+
+h2, h1 {
+    font-family: 'Bruno Ace SC', cursive;
+}
+
+h1 {
+    font-size: 2.5rem;
+    grid-row: 1/5;
+    grid-column: 2/3;
+}
+
+.charactersDiv {
+    grid-row: 1/5;
+    grid-column: 3/4;
+}
+
+.festivalImg {
+    max-width: 100vw;
+}
