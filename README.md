@@ -6,12 +6,12 @@ This project is an exercise that is part of the Odin Project's Fullstack JS Path
 
 [Link to the exercise](https://www.theodinproject.com/lessons/node-path-javascript-where-s-waldo-a-photo-tagging-app)
 
-## Technologies
+## Technologies :rocket:
 
 - React for the UX/UI
 - Firebase for data hosting
 
-## Assignment :rocket:
+## Assignment :construction_worker:
 
 > 1. Set up a GitHub Repo for this project. Follow the instructions atop the Recipes project if you need help.
 > 2. Think about what you’ll need to do to get this all working together. This is where it’s really helpful to think it completely through on paper or whiteboard ahead of time! A few minutes of thought can save you from wasting an hour of coding.
