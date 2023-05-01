@@ -2,12 +2,12 @@
 
 ## Context
 
-This project is an exercise, that is part of the Odin Project's Fullstack JS Path.
+This project is an exercise that is part of the Odin Project's Fullstack JS Path.
 
-## Technologies
+## Technologies used
 
-_- React for the UX/UI
-_- Firebase for data hosting
+- React for the UX/UI
+- Firebase for data hosting
 
 These are the different steps of the assignement :
 
