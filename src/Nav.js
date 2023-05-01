@@ -16,9 +16,9 @@ const Nav = () => {
         <img src={first}></img>
         <img src={second}></img>
         <img src={third}></img>
-        <h3></h3>
-        <h3></h3>
-        <h3></h3>
+        <h3>?</h3>
+        <h3>?</h3>
+        <h3>?</h3>
       </div>
     </div>
   );
