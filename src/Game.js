@@ -5,16 +5,15 @@ import "./style.css";
 const Game = () => {
   let targetingBoxClicked = false;
 
-  function checkCoordinates(x, y) {
-    console.log(`checking coordinates : x is ${x} and y is ${y}  `);
-    if (x) return;
+  function checkCoordinates(coord) {
+    console.log(
+      `checking coordinates : x is ${coord[0]} and y is ${coord[1]}  `
+    );
   }
 
   function getPositionRelToImg(x, y, e) {
     let rect = e.target.getBoundingClientRect();
-    console.log(rect);
     let absoluteX = x * (2248 / rect.width);
-    console.log(absoluteX);
     let absoluteY = (y - 140) * (2248 / rect.width);
     let clickAbsoluteCoord = [absoluteX, absoluteY];
     return clickAbsoluteCoord;
@@ -23,8 +22,8 @@ const Game = () => {
   function showTargetingBox(x, y, e) {
     let targetingBox = document.getElementById("targetingbox");
     if (targetingBoxClicked === false) {
-      console.log(getPositionRelToImg(x, y, e));
-      //   let clickCoordinates = checkCoordinates(x, y - 140);
+      let clickAbsoluteCoord = getPositionRelToImg(x, y, e);
+      checkCoordinates(clickAbsoluteCoord);
       targetingBox.style.top = y - 140 + "px";
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
