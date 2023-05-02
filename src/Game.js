@@ -5,10 +5,32 @@ import "./style.css";
 const Game = () => {
   let targetingBoxClicked = false;
 
-  function checkCoordinates(coord) {
-    console.log(
-      `checking coordinates : x is ${coord[0]} and y is ${coord[1]}  `
-    );
+  const target = [
+    { name: "Amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
+    { name: "Clown", xmin: 2066, xmax: 2156, ymin: 1308, ymax: 1401 },
+  ];
+
+  function checkCoord(coord) {
+    console.log(coord);
+    let result = "";
+    target.forEach((element) => {
+      if (
+        coord[0] >= element.xmin &&
+        coord[0] <= element.xmax &&
+        coord[1] >= element.ymin &&
+        coord[1] <= element.ymax
+      ) {
+        result = element.name;
+      }
+    });
+    return result;
+  }
+
+  function checkMsg(coord) {
+    if (true)
+      console.log(
+        `checking coordinates : x is ${coord[0]} and y is ${coord[1]}  `
+      );
   }
 
   function getPositionRelToImg(x, y, e) {
@@ -23,7 +45,8 @@ const Game = () => {
     let targetingBox = document.getElementById("targetingbox");
     if (targetingBoxClicked === false) {
       let clickAbsoluteCoord = getPositionRelToImg(x, y, e);
-      checkCoordinates(clickAbsoluteCoord);
+      let result = checkCoord(clickAbsoluteCoord);
+      console.log(result);
       targetingBox.style.top = y - 140 + "px";
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
