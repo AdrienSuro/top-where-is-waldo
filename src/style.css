@@ -4,6 +4,23 @@
     font-family: 'Bruno Ace SC', cursive;
 }
 
+#targetingbox {
+    /* width: 120px; */
+    /* height: 150px; */
+    background-color: rgba(0, 0, 0, 0.604);
+    z-index: 99;
+    color: white;
+    position: absolute;
+    visibility: hidden;
+    /* top: 555px;
+    left: 30px; */
+}
+
+#targetingbox > h3 {
+    font-size: 0.8rem;
+    padding: 5px;
+}
+
 .header {
     height: 140px;
     width: 100vw;
@@ -58,4 +75,6 @@ h1 {
 
 .festivalImg {
     max-width: 100vw;
+    position: absolute;
+    z-index: 2;
 }
