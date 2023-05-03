@@ -5,15 +5,12 @@
 }
 
 #targetingbox {
-    /* width: 120px; */
-    /* height: 150px; */
     background-color: rgba(0, 0, 0, 0.604);
     z-index: 99;
     color: white;
     position: absolute;
     visibility: hidden;
-    /* top: 555px;
-    left: 30px; */
+
 }
 
 #targetingbox > h3 {
