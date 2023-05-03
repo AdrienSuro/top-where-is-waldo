@@ -4,6 +4,9 @@ import "./style.css";
 
 const Game = () => {
   let targetingBoxClicked = false;
+  let clickX = 0;
+  let clickY = 0;
+  let rect = "";
 
   const target = [
     { name: "Amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
@@ -35,28 +38,31 @@ const Game = () => {
     }
   }
 
-  function getPositionRelToImg(x, y, e) {
-    let rect = e.target.getBoundingClientRect();
-    let absoluteX = x * (2248 / rect.width);
-    let absoluteY = (y - 140) * (2248 / rect.width);
+  function getPositionRelToImg() {
+    let absoluteX = clickX * (2248 / rect.width);
+    let absoluteY = (clickY - 140) * (2248 / rect.width);
     let clickAbsoluteCoord = [absoluteX, absoluteY];
     return clickAbsoluteCoord;
   }
 
   function clickOnCharacter(character) {
+    let clickAbsoluteCoord = getPositionRelToImg();
+    let result = checkCoord(clickAbsoluteCoord);
+    checkMsg(result);
     console.log(`you're trying to find ${character}`);
+    return character;
   }
 
   function showTargetingBox(x, y, e) {
     let targetingBox = document.getElementById("targetingbox");
     if (targetingBoxClicked === false) {
+      rect = e.target.getBoundingClientRect();
       targetingBox.style.top = y - 140 + "px";
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
       targetingBoxClicked = true;
-      let clickAbsoluteCoord = getPositionRelToImg(x, y, e);
-      let result = checkCoord(clickAbsoluteCoord);
-      checkMsg(result);
+      clickX = x;
+      clickY = y;
     } else if (targetingBoxClicked === true) {
       let targetingBox = document.getElementById("targetingbox");
       targetingBox.style.visibility = "hidden";
@@ -72,13 +78,13 @@ const Game = () => {
         onClick={(e) => showTargetingBox(e.pageX, e.pageY, e)}
       ></img>
       <div id="targetingbox">
-        <h3 id="amerindianBox" onClick={() => clickOnCharacter("amerindian")}>
+        <h3 id="amerindianBox" onClick={() => clickOnCharacter("Amerindian")}>
           AMERINDIAN
         </h3>
-        <h3 id="clownBox" onClick={() => clickOnCharacter("clown")}>
+        <h3 id="clownBox" onClick={() => clickOnCharacter("Clown")}>
           CLOWN
         </h3>
-        <h3 id="homeless" onClick={() => clickOnCharacter("homeless")}>
+        <h3 id="homeless" onClick={() => clickOnCharacter("Homeless")}>
           HOMELESS
         </h3>
       </div>
