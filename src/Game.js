@@ -7,11 +7,14 @@ const Game = () => {
   let clickX = 0;
   let clickY = 0;
   let rect = "";
+  //   const amerindianCheckbox = document.getElementById("amerindianCheckbox");
+  const clownCheckbox = document.getElementById("clownCheckbox");
+  const homelessCheckbox = document.getElementById("homelessCheckbox");
 
   const target = [
-    { name: "Amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
-    { name: "Clown", xmin: 2066, xmax: 2156, ymin: 1308, ymax: 1401 },
-    { name: "Homeless", xmin: 515, xmax: 615, ymin: 1974, ymax: 2065 },
+    { name: "amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
+    { name: "clown", xmin: 2066, xmax: 2156, ymin: 1308, ymax: 1401 },
+    { name: "homeless", xmin: 515, xmax: 615, ymin: 1974, ymax: 2065 },
   ];
 
   function checkCoord(coord, character) {
@@ -32,6 +35,8 @@ const Game = () => {
 
   function checkMsg(character) {
     if (character) {
+      const characterTarget = document.getElementById(character + "Checkbox");
+      characterTarget.innerHTML = "&#10003;";
       console.log(`Congratulations ! You found ${character} `);
     } else {
       console.log("Missed ! Try again");
@@ -78,13 +83,13 @@ const Game = () => {
         onClick={(e) => showTargetingBox(e.pageX, e.pageY, e)}
       ></img>
       <div id="targetingbox">
-        <h3 id="amerindianBox" onClick={() => clickOnCharacter("Amerindian")}>
+        <h3 id="amerindianBox" onClick={() => clickOnCharacter("amerindian")}>
           AMERINDIAN
         </h3>
-        <h3 id="clownBox" onClick={() => clickOnCharacter("Clown")}>
+        <h3 id="clownBox" onClick={() => clickOnCharacter("clown")}>
           CLOWN
         </h3>
-        <h3 id="homeless" onClick={() => clickOnCharacter("Homeless")}>
+        <h3 id="homeless" onClick={() => clickOnCharacter("homeless")}>
           HOMELESS
         </h3>
       </div>

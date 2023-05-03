@@ -12,13 +12,13 @@ const Nav = () => {
       <h2 className="bestScores">BEST SCORES</h2>
       <h1>FESTIWALDO</h1>
       <div className="charactersDiv">
-        <h2>FIND THESE 3 CHARACTERS</h2>
+        <h2>FIND THESE :</h2>
         <img src={first}></img>
         <img src={second}></img>
         <img src={third}></img>
-        <h3>?</h3>
-        <h3>?</h3>
-        <h3>?</h3>
+        <h3 id="amerindianCheckbox">?</h3>
+        <h3 id="clownCheckbox">?</h3>
+        <h3 id="homelessCheckbox">?</h3>
       </div>
     </div>
   );
