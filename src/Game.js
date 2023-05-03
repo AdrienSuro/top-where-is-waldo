@@ -14,19 +14,19 @@ const Game = () => {
     { name: "Homeless", xmin: 515, xmax: 615, ymin: 1974, ymax: 2065 },
   ];
 
-  function checkCoord(coord) {
-    console.log(coord);
+  function checkCoord(coord, character) {
     let result = "";
-    target.forEach((element) => {
-      if (
-        coord[0] >= element.xmin &&
-        coord[0] <= element.xmax &&
-        coord[1] >= element.ymin &&
-        coord[1] <= element.ymax
-      ) {
-        result = element.name;
-      }
+    let characterIndex = target.findIndex((element) => {
+      return element.name === character;
     });
+    if (
+      coord[0] >= target[characterIndex].xmin &&
+      coord[0] <= target[characterIndex].xmax &&
+      coord[1] >= target[characterIndex].ymin &&
+      coord[1] <= target[characterIndex].ymax
+    ) {
+      result = target[characterIndex].name;
+    }
     return result;
   }
 
@@ -47,9 +47,9 @@ const Game = () => {
 
   function clickOnCharacter(character) {
     let clickAbsoluteCoord = getPositionRelToImg();
-    let result = checkCoord(clickAbsoluteCoord);
-    checkMsg(result);
+    let result = checkCoord(clickAbsoluteCoord, character);
     console.log(`you're trying to find ${character}`);
+    checkMsg(result);
     return character;
   }
 
