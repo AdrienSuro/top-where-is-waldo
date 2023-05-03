@@ -7,9 +7,6 @@ const Game = () => {
   let clickX = 0;
   let clickY = 0;
   let rect = "";
-  //   const amerindianCheckbox = document.getElementById("amerindianCheckbox");
-  const clownCheckbox = document.getElementById("clownCheckbox");
-  const homelessCheckbox = document.getElementById("homelessCheckbox");
 
   const target = [
     { name: "amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
@@ -37,6 +34,7 @@ const Game = () => {
     if (character) {
       const characterTarget = document.getElementById(character + "Checkbox");
       characterTarget.innerHTML = "&#10003;";
+      characterTarget.style.fontSize = "2.2rem";
       console.log(`Congratulations ! You found ${character} `);
     } else {
       console.log("Missed ! Try again");

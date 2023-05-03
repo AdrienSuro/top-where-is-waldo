@@ -55,7 +55,7 @@ h1 {
     grid-column: 3/4;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 1fr));
     grid-auto-flow: row;
     justify-items: center;
 }
@@ -68,6 +68,14 @@ h1 {
     grid-column: 1/4;
     margin: 0px;
     margin-bottom: 10px;
+}
+
+.charactersDiv > h3 {
+    align-self:center;
+    margin: 0px;
+    transition-property: font-size;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
 }
 
 .festivalImg {
