@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./normalize.css";
 import "./style.css";
 import first from "./img/1_104_104.png";
@@ -8,7 +9,9 @@ import third from "./img/3_104_104.png";
 const Nav = () => {
   return (
     <div className="header">
-      <h2 className="newGame">NEW GAME</h2>
+      <Link to="/game">
+        <h2 className="newGame">NEW GAME</h2>
+      </Link>
       <h2 className="bestScores">BEST SCORES</h2>
       <h1>FESTIWALDO</h1>
       <div className="charactersDiv">

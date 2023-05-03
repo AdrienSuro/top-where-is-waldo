@@ -1,7 +1,13 @@
 import React from "react";
+import festival from "./img/festival.png";
+import "./style.css";
 
 const Start = () => {
-  return <h1>Start Page</h1>;
+  return (
+    <div style={{ position: "relative" }}>
+      <img className="festivalImg" src={festival}></img>
+    </div>
+  );
 };
 
 export default Start;
