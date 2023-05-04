@@ -4,13 +4,22 @@
     font-family: 'Bruno Ace SC', cursive;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    height: 100%;
+}
+
+h2 {
+    margin: 0px;
+}
+
 #targetingbox {
     background-color: rgba(0, 0, 0, 0.604);
     z-index: 99;
     color: white;
     position: absolute;
     visibility: hidden;
-
 }
 
 #targetingbox > h3 {
@@ -30,6 +39,11 @@
     margin: 0;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.title {
+    grid-row: 1/5;
+    grid-column: 2/3;
 }
 
 .newGame {
@@ -82,4 +96,11 @@ h1 {
     max-width: 100vw;
     position: absolute;
     z-index: 2;
+}
+
+.festivalImgDimmed {
+    max-width: 100vw;
+    position: absolute;
+    z-index: 2;
+    filter: brightness(50%);
 }

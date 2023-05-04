@@ -5,7 +5,7 @@ import "./style.css";
 const Start = () => {
   return (
     <div style={{ position: "relative" }}>
-      <img className="festivalImg" src={festival}></img>
+      <img className="festivalImgDimmed" src={festival}></img>
     </div>
   );
 };

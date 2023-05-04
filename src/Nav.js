@@ -9,11 +9,15 @@ import third from "./img/3_104_104.png";
 const Nav = () => {
   return (
     <div className="header">
-      <Link to="/game">
-        <h2 className="newGame">NEW GAME</h2>
+      <Link className="newGame" to="/game">
+        <h2>NEW GAME</h2>
       </Link>
-      <h2 className="bestScores">BEST SCORES</h2>
-      <h1>FESTIWALDO</h1>
+      <Link className="bestScores" to="/Scores">
+        <h2>BEST SCORES</h2>
+      </Link>
+      <Link className="title" to="/">
+        <h1>FESTIWALDO</h1>
+      </Link>
       <div className="charactersDiv">
         <h2>FIND THESE :</h2>
         <img src={first}></img>
