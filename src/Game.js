@@ -49,15 +49,18 @@ const Game = () => {
   }
 
   function clickOnCharacter(character) {
+    const targetingBox = document.getElementById("targetingbox");
     let clickAbsoluteCoord = getPositionRelToImg();
     let result = checkCoord(clickAbsoluteCoord, character);
     console.log(`you're trying to find ${character}`);
     checkMsg(result);
+    targetingBox.style.visibility = "hidden";
+    targetingBoxClicked = false;
     return character;
   }
 
   function showTargetingBox(x, y, e) {
-    let targetingBox = document.getElementById("targetingbox");
+    const targetingBox = document.getElementById("targetingbox");
     if (targetingBoxClicked === false) {
       rect = e.target.getBoundingClientRect();
       targetingBox.style.top = y - 140 + "px";
@@ -67,7 +70,6 @@ const Game = () => {
       clickX = x;
       clickY = y;
     } else if (targetingBoxClicked === true) {
-      let targetingBox = document.getElementById("targetingbox");
       targetingBox.style.visibility = "hidden";
       targetingBoxClicked = false;
     }
