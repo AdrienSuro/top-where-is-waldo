@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Gruppo&family=Montserrat+Subrayada&family=Rubik+Maze&family=Zeyada&display=swap');
 
+:root {
+    --transparentGrey: #4150609a;
+    --white: #ffffff;
+  }
+
 * {
     font-family: 'Bruno Ace SC', cursive;
 }
@@ -27,10 +32,27 @@ h2 {
     padding: 5px;
 }
 
+.welcomeDiv {
+    position: absolute;
+    z-index: 99;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20%;
+    background-color: var(--transparentGrey);
+    text-align: center;
+    color: white;
+    padding: 10px;
+}
+
+.welcomeDiv > h1 {
+    font-size: 2rem;
+}
+
 .header {
     height: 140px;
     width: 100vw;
-    background-color: #41506062;
+    background-color: var(--transparentGrey);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
@@ -65,6 +87,7 @@ h1 {
 
 .charactersDiv {
     max-height: 100%;
+    height: 140px;
     grid-row: 1/5;
     grid-column: 3/4;
     display: grid;
@@ -72,6 +95,11 @@ h1 {
     grid-template-rows: repeat(3, minmax(0, 1fr));
     grid-auto-flow: row;
     justify-items: center;
+    right: 0;
+    top: 0;
+    position: fixed;
+    z-index: 99;
+    background-color: var(--grey);
 }
 
 .charactersDiv > img {
@@ -103,4 +131,18 @@ h1 {
     position: absolute;
     z-index: 2;
     filter: brightness(50%);
+}
+
+#messageBox {
+    visibility: hidden;
+    position: absolute;
+    z-index: 99;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20%;
+    background-color: var(--transparentGrey);
+    text-align: center;
+    color: white;
+    padding: 10px;
 }

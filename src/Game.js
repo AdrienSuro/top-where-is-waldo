@@ -1,5 +1,6 @@
 import React from "react";
 import festival from "./img/festival.png";
+import { useState } from "react";
 import "./style.css";
 
 const Game = () => {
@@ -56,7 +57,12 @@ const Game = () => {
     checkMsg(result);
     targetingBox.style.visibility = "hidden";
     targetingBoxClicked = false;
-    return character;
+    const messageBox = document.getElementById("messageBox");
+    messageBox.style.visibility = "visible";
+    setTimeout(() => {
+      const messageBox = document.getElementById("messageBox");
+      messageBox.style.visibility = "hidden";
+    }, 2000);
   }
 
   function showTargetingBox(x, y, e) {
@@ -92,6 +98,9 @@ const Game = () => {
         <h3 id="homeless" onClick={() => clickOnCharacter("homeless")}>
           HOMELESS
         </h3>
+      </div>
+      <div id="messageBox">
+        <p>Congratulations you found</p>
       </div>
     </div>
   );
