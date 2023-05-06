@@ -1,9 +1,69 @@
 import React from "react";
+import { useEffect } from "react";
 import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
+import { initializeApp, firebase } from "firebase/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  collection,
+  query,
+  where,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDJ46kHkX2hNSz5Fu1t_jhGy9iDvHNyuQM",
+  authDomain: "festiwaldo.firebaseapp.com",
+  projectId: "festiwaldo",
+  storageBucket: "festiwaldo.appspot.com",
+  messagingSenderId: "180763891346",
+  appId: "1:180763891346:web:290893ddabba7851c0f84b",
+};
 
 const Game = () => {
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const charactersRef = collection(db, "characters");
+
+  useEffect(() => {
+    const q = query(collection(db, "characters"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const cities = [];
+      querySnapshot.forEach((doc) => {
+        cities.push(doc.data().name);
+      });
+      console.log("Current cities in CA: ", cities.join(", "));
+    });
+  }, []);
+
+  setDoc(doc(charactersRef, "amerindian"), {
+    name: "amerindian",
+    xmin: 1892,
+    xmax: 1943,
+    ymin: 1069,
+    ymax: 1156,
+  });
+  setDoc(doc(charactersRef, "clown"), {
+    name: "clown",
+    xmin: 2066,
+    xmax: 2156,
+    ymin: 1308,
+    ymax: 1401,
+  });
+  setDoc(doc(charactersRef, "homeless"), {
+    name: "homeless",
+    xmin: 515,
+    xmax: 615,
+    ymin: 1974,
+    ymax: 2065,
+  });
+
   let targetingBoxClicked = false;
   let clickX = 0;
   let clickY = 0;
@@ -32,13 +92,15 @@ const Game = () => {
   }
 
   function checkMsg(character) {
+    const messageBox = document.getElementById("messageBox");
     if (character) {
       const characterTarget = document.getElementById(character + "Checkbox");
       characterTarget.innerHTML = "&#10003;";
       characterTarget.style.fontSize = "2.2rem";
-      console.log(`Congratulations ! You found ${character} `);
+      messageBox.innerHTML = `Congratulations ! You found ${character} `;
     } else {
       console.log("Missed ! Try again");
+      messageBox.innerHTML = "You missed the target, try again!";
     }
   }
 

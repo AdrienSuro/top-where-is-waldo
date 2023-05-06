@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&family=Gruppo&family=Montserrat+Subrayada&family=Rubik+Maze&family=Zeyada&display=swap');
 
 :root {
-    --transparentGrey: #4150609a;
+    --transparentGrey: #6c829bd5;
     --white: #ffffff;
   }
 
@@ -52,15 +52,17 @@ h2 {
 .header {
     height: 140px;
     width: 100vw;
-    background-color: var(--transparentGrey);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
-    justify-content: space-between;
+    justify-items: stretch;
     color: white;
     margin: 0;
     padding: 10px;
+    background-color: var(--transparentGrey);
+
     box-sizing: border-box;
+    
 }
 
 .title {
@@ -87,19 +89,20 @@ h1 {
 
 .charactersDiv {
     max-height: 100%;
+    /* width: 100%; */
     height: 140px;
     grid-row: 1/5;
     grid-column: 3/4;
     display: grid;
+    grid-auto-flow: dense;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, minmax(0, 1fr));
     grid-auto-flow: row;
-    justify-items: center;
+    justify-items:center;
     right: 0;
     top: 0;
-    position: fixed;
+    /* position: fixed; */
     z-index: 99;
-    background-color: var(--grey);
 }
 
 .charactersDiv > img {
@@ -135,7 +138,7 @@ h1 {
 
 #messageBox {
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     z-index: 99;
     width: 60%;
     margin-left: 20%;
