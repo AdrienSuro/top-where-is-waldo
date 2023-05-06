@@ -3,33 +3,10 @@ import { useEffect } from "react";
 import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
-import { initializeApp, firebase } from "firebase/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDJ46kHkX2hNSz5Fu1t_jhGy9iDvHNyuQM",
-  authDomain: "festiwaldo.firebaseapp.com",
-  projectId: "festiwaldo",
-  storageBucket: "festiwaldo.appspot.com",
-  messagingSenderId: "180763891346",
-  appId: "1:180763891346:web:290893ddabba7851c0f84b",
-};
+import db from "./Firebase";
+import { collection, query, onSnapshot } from "firebase/firestore";
 
 const Game = () => {
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const charactersRef = collection(db, "characters");
   const [target, setTarget] = useState([]);
   let targetingBoxClicked = false;
   let clickX = 0;
