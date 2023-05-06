@@ -30,28 +30,18 @@ const Game = () => {
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
   const charactersRef = collection(db, "characters");
-
-  useEffect(() => {
-    const q = query(collection(db, "characters"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const cities = [];
-      querySnapshot.forEach((doc) => {
-        cities.push(doc.data().name);
-      });
-      console.log("Chracters to be found : ", cities.join(", "));
-    });
-  }, []);
-
+  const [target, setTarget] = useState([]);
   let targetingBoxClicked = false;
   let clickX = 0;
   let clickY = 0;
   let rect = "";
 
-  const target = [
-    { name: "amerindian", xmin: 1892, xmax: 1943, ymin: 1069, ymax: 1156 },
-    { name: "clown", xmin: 2066, xmax: 2156, ymin: 1308, ymax: 1401 },
-    { name: "homeless", xmin: 515, xmax: 615, ymin: 1974, ymax: 2065 },
-  ];
+  useEffect(() => {
+    const q = query(collection(db, "characters"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      setTarget(querySnapshot.docs.map((doc) => doc.data()));
+    });
+  }, []);
 
   function checkCoord(coord, character) {
     let result = "";
@@ -91,18 +81,21 @@ const Game = () => {
 
   function clickOnCharacter(character) {
     const targetingBox = document.getElementById("targetingbox");
+    const messageBox = document.getElementById("messageBox");
     let clickAbsoluteCoord = getPositionRelToImg();
     let result = checkCoord(clickAbsoluteCoord, character);
-    console.log(`you're trying to find ${character}`);
     checkMsg(result);
     targetingBox.style.visibility = "hidden";
     targetingBoxClicked = false;
-    const messageBox = document.getElementById("messageBox");
     messageBox.style.visibility = "visible";
     setTimeout(() => {
-      const messageBox = document.getElementById("messageBox");
       messageBox.style.visibility = "hidden";
     }, 2000);
+  }
+
+  function updateClickCoord(x, y) {
+    clickX = x;
+    clickY = y;
   }
 
   function showTargetingBox(x, y, e) {
@@ -113,8 +106,8 @@ const Game = () => {
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
       targetingBoxClicked = true;
-      clickX = x;
-      clickY = y;
+      updateClickCoord(x, y);
+      console.log(target);
     } else if (targetingBoxClicked === true) {
       targetingBox.style.visibility = "hidden";
       targetingBoxClicked = false;
