@@ -4,6 +4,7 @@ import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
 import db from "./Firebase";
+import quad from "./Firebase";
 import { collection, query, onSnapshot } from "firebase/firestore";
 
 const Game = () => {
@@ -14,8 +15,8 @@ const Game = () => {
   let rect = "";
 
   useEffect(() => {
-    const q = query(collection(db, "characters"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    // const q = query(collection(db, "characters"));
+    const unsubscribe = onSnapshot(quad, (querySnapshot) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
