@@ -38,31 +38,9 @@ const Game = () => {
       querySnapshot.forEach((doc) => {
         cities.push(doc.data().name);
       });
-      console.log("Current cities in CA: ", cities.join(", "));
+      console.log("Chracters to be found : ", cities.join(", "));
     });
   }, []);
-
-  setDoc(doc(charactersRef, "amerindian"), {
-    name: "amerindian",
-    xmin: 1892,
-    xmax: 1943,
-    ymin: 1069,
-    ymax: 1156,
-  });
-  setDoc(doc(charactersRef, "clown"), {
-    name: "clown",
-    xmin: 2066,
-    xmax: 2156,
-    ymin: 1308,
-    ymax: 1401,
-  });
-  setDoc(doc(charactersRef, "homeless"), {
-    name: "homeless",
-    xmin: 515,
-    xmax: 615,
-    ymin: 1974,
-    ymax: 2065,
-  });
 
   let targetingBoxClicked = false;
   let clickX = 0;
