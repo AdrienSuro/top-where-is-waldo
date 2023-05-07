@@ -14,6 +14,8 @@ const Game = (props) => {
   const [rect, setRect] = useState("");
   const [foundChar, setFoundChar] = useState([]);
   const [winner, setWinner] = useState(false);
+  const targetingBox = document.getElementById("targetingbox");
+  const messageBox = document.getElementById("messageBox");
 
   useEffect(() => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -34,16 +36,14 @@ const Game = (props) => {
       console.log("it has length 3 youhou");
       setWinner(true);
     } else {
-      displayMsg();
+      return;
     }
   }, [foundChar]);
 
   function displayMsg(completeness) {
     const messageBox = document.getElementById("messageBox");
-
     if (completeness) {
-      messageBox.innerHTML = "YOU WON";
-      console.log("you won in displaymsg");
+      messageBox.innerHTML = "Congrats ! You found all 3 characters";
     }
   }
 
@@ -77,7 +77,6 @@ const Game = (props) => {
         messageBox.innerHTML = `Congratulations ! You found ${character} `;
       }
     } else {
-      console.log("Missed ! Try again");
       messageBox.innerHTML = "You missed the target, try again!";
     }
   }
@@ -90,8 +89,6 @@ const Game = (props) => {
   }
 
   function clickOnCharacter(character) {
-    const targetingBox = document.getElementById("targetingbox");
-    const messageBox = document.getElementById("messageBox");
     let clickAbsoluteCoord = getPositionRelToImg();
     let result = checkCoord(clickAbsoluteCoord, character);
     checkMsg(result);
