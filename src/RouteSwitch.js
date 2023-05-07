@@ -11,8 +11,8 @@ const RouteSwitch = () => {
 
   function incrementSeconds() {
     setElapsedSeconds((prevElapsedSeconds) => prevElapsedSeconds + 1);
-    console.log("inside increment Seconds from RouteSwitch");
-    console.log("elapsed seconds are : " + elapsedSeconds);
+    // console.log("inside increment Seconds from RouteSwitch");
+    // console.log("elapsed seconds are : " + elapsedSeconds);
   }
 
   return (

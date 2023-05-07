@@ -60,9 +60,7 @@ h2 {
     margin: 0;
     padding: 10px;
     background-color: var(--transparentGrey);
-
-    box-sizing: border-box;
-    
+    box-sizing: border-box;  
 }
 
 .title {
@@ -89,7 +87,7 @@ h1 {
     font-size: 2.5rem;
     grid-row: 1/5;
     grid-column: 2/3;
-    justify-self: center;
+    text-align: center;
 }
 
 .charactersDiv {
@@ -118,6 +116,7 @@ h1 {
     grid-column: 1/4;
     margin: 0px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .characterBox > h3 {
@@ -126,6 +125,7 @@ h1 {
     transition-property: font-size;
     transition-duration: 500ms;
     transition-timing-function: ease-in-out;
+    text-align: center;
 }
 
 .festivalImg {
@@ -157,4 +157,9 @@ h1 {
 
 .characterBox {
     display: block;
+}
+
+.timer {
+    font-size: 2rem;
+    text-align: center;
 }

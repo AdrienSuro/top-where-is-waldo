@@ -8,15 +8,18 @@ import { onSnapshot } from "firebase/firestore";
 
 const Game = (props) => {
   const [target, setTarget] = useState([]);
-  const [time, setTime] = useState(new Date());
   let targetingBoxClicked = false;
-  let clickX = 0;
-  let clickY = 0;
-  let rect = "";
+  const [clickX, setClickX] = useState(0);
+  const [clickY, setClickY] = useState(0);
+  // let clickX = 0;
+  // let clickY = 0;
+  const [rect, setRect] = useState("");
+  // let rect = "";
 
   useEffect(() => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
+      console.log("useEffect");
     });
   }, []);
 
@@ -28,6 +31,8 @@ const Game = (props) => {
   }, []);
 
   function checkCoord(coord, character) {
+    console.log(coord);
+    console.log(clickX);
     let result = "";
     let characterIndex = target.findIndex((element) => {
       return element.name === character;
@@ -57,9 +62,14 @@ const Game = (props) => {
   }
 
   function getPositionRelToImg() {
+    console.log(
+      "Inside getPositionRelToImg, x is " + clickX + " and y is " + clickY
+    );
+    console.log("Inisde GetpositionrELtoImg, rec is " + rect);
     let absoluteX = clickX * (2248 / rect.width);
     let absoluteY = (clickY - 140) * (2248 / rect.width);
     let clickAbsoluteCoord = [absoluteX, absoluteY];
+    console.log(clickAbsoluteCoord);
     return clickAbsoluteCoord;
   }
 
@@ -67,6 +77,8 @@ const Game = (props) => {
     const targetingBox = document.getElementById("targetingbox");
     const messageBox = document.getElementById("messageBox");
     let clickAbsoluteCoord = getPositionRelToImg();
+    console.log(clickAbsoluteCoord);
+    console.log(clickX);
     let result = checkCoord(clickAbsoluteCoord, character);
     checkMsg(result);
     targetingBox.style.visibility = "hidden";
@@ -78,20 +90,21 @@ const Game = (props) => {
   }
 
   function updateClickCoord(x, y) {
-    clickX = x;
-    clickY = y;
+    setClickX(x);
+    setClickY(y);
+    console.log("x is " + clickX + " and y is " + clickY);
   }
 
   function showTargetingBox(x, y, e) {
     const targetingBox = document.getElementById("targetingbox");
     if (targetingBoxClicked === false) {
-      rect = e.target.getBoundingClientRect();
+      setRect(e.target.getBoundingClientRect());
+      console.log(rect);
       targetingBox.style.top = y - 140 + "px";
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
       targetingBoxClicked = true;
       updateClickCoord(x, y);
-      console.log(target);
     } else if (targetingBoxClicked === true) {
       targetingBox.style.visibility = "hidden";
       targetingBoxClicked = false;
