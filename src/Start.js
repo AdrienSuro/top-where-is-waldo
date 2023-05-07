@@ -19,7 +19,7 @@ const Start = () => {
         </p>
         <p>Try to be quick ;-)</p>
         <Link to="/game">
-          <h2>START</h2>
+          <h2 onClick={() => console.log("hi")}>START</h2>
         </Link>
       </div>
     </div>

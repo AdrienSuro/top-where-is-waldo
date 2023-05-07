@@ -3,22 +3,28 @@ import { useEffect } from "react";
 import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
-import db from "./Firebase";
-import quad from "./Firebase";
-import { collection, query, onSnapshot } from "firebase/firestore";
+import q from "./Firebase";
+import { onSnapshot } from "firebase/firestore";
 
-const Game = () => {
+const Game = (props) => {
   const [target, setTarget] = useState([]);
+  const [time, setTime] = useState(new Date());
   let targetingBoxClicked = false;
   let clickX = 0;
   let clickY = 0;
   let rect = "";
 
   useEffect(() => {
-    // const q = query(collection(db, "characters"));
-    const unsubscribe = onSnapshot(quad, (querySnapshot) => {
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
     });
+  }, []);
+
+  useEffect(() => {
+    const intervalFn = setInterval(props.incrementSeconds, 1000);
+    return () => {
+      clearInterval(intervalFn);
+    };
   }, []);
 
   function checkCoord(coord, character) {

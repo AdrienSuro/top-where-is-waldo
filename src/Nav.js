@@ -6,8 +6,9 @@ import first from "./img/1_104_104.png";
 import second from "./img/2_104_104.png";
 import third from "./img/3_104_104.png";
 import Character from "./Character";
+import Timer from "./Timer";
 
-const Nav = () => {
+const Nav = (props) => {
   return (
     <div className="header">
       <Link className="newGame" to="/">
@@ -19,6 +20,7 @@ const Nav = () => {
       <Link className="title" to="/">
         <h1>FESTIWALDO</h1>
       </Link>
+      <Timer elapsedSeconds={props.elapsedSeconds} />
       <div className="charactersDiv">
         <h2>FIND THESE :</h2>
         <Character image={first} name="amerindian" />
