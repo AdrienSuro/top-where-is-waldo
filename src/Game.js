@@ -43,7 +43,7 @@ const Game = (props) => {
   }, [gameComplete]);
 
   function checkCoord(coord, character) {
-    let result = "";
+    let result = null;
     let characterIndex = target.findIndex((element) => {
       return element.name === character;
     });
@@ -92,6 +92,7 @@ const Game = (props) => {
         setShowMsg(true);
       }
     } else {
+      setShowMsg(true);
       setCurrentCharacter(character);
     }
   }

@@ -4,10 +4,12 @@ import { q, db } from "./Firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 function MessageBox(props) {
-  function addScoreToFirebase() {
-    setDoc(doc(db, "scores", "Test-2"), {
-      score: 13,
-    });
+  function addScoreToFirebase(name) {
+    if (name !== null) {
+      setDoc(doc(db, "scores", name), {
+        score: props.elapsedSeconds,
+      });
+    }
   }
 
   return (
@@ -18,15 +20,23 @@ function MessageBox(props) {
           {props.gameComplete ? (
             <>
               <div id="messageBox">
+                <div>Well done ! You found all the characters !</div>
                 <div>
-                  Well done ! You found all the characters in{" "}
-                  {props.elapsedSeconds} seconds ! You can add your score to the
-                  best scores here or let's start a new game
+                  You can add your time to the best scores or start a new game
                 </div>
+                <div>Your time : {props.elapsedSeconds} </div>
                 <div>
                   <h2>Enter your name</h2>
-                  <input type="text"></input>
-                  <button onClick={addScoreToFirebase}>Submit score</button>
+                  <input type="text" id="userNameInput"></input>
+                  <button
+                    onClick={() => {
+                      const userNameInput =
+                        document.getElementById("userNameInput");
+                      addScoreToFirebase(userNameInput.value);
+                    }}
+                  >
+                    Submit score
+                  </button>
                 </div>
                 <Link to="/">
                   <h2>New Game</h2>
@@ -35,9 +45,16 @@ function MessageBox(props) {
             </>
           ) : (
             <>
-              <div id="messageBox">
-                <div>Congratulations, you found {props.currentCharacter} !</div>
-              </div>
+              {props.currentCharacter === null && (
+                <div id="messageBox">You missed the target, try again!</div>
+              )}
+              {props.currentCharacter !== null && (
+                <div id="messageBox">
+                  <div>
+                    Congratulations, you found {props.currentCharacter} !
+                  </div>
+                </div>
+              )}
             </>
           )}
         </>

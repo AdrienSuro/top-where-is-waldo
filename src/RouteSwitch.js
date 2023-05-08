@@ -24,6 +24,7 @@ const RouteSwitch = () => {
             <Game
               incrementSeconds={incrementSeconds}
               elapsedSeconds={elapsedSeconds}
+              setElapsedSeconds={setElapsedSeconds}
             />
           }
         ></Route>
