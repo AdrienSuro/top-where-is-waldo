@@ -5,6 +5,7 @@ import { useState } from "react";
 import "./style.css";
 import q from "./Firebase";
 import { onSnapshot } from "firebase/firestore";
+import MessageBox from "./MessageBox";
 
 const Game = (props) => {
   const [target, setTarget] = useState([]);
@@ -22,6 +23,9 @@ const Game = (props) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
+
+  //Will create a simple array of target at the beginning
+  // useEffect(() => {})
 
   useEffect(() => {
     const intervalFn = setInterval(props.incrementSeconds, 1000);
@@ -53,31 +57,49 @@ const Game = (props) => {
       return element.name === character;
     });
     if (
+      characterIndex != -1 &&
       coord[0] >= target[characterIndex].xmin &&
       coord[0] <= target[characterIndex].xmax &&
       coord[1] >= target[characterIndex].ymin &&
       coord[1] <= target[characterIndex].ymax
     ) {
       result = target[characterIndex].name;
-      setFoundChar([...foundChar, result]);
-      console.log(foundChar);
     }
     return result;
   }
 
-  function checkMsg(character) {
-    const messageBox = document.getElementById("messageBox");
+  function updateArray(character) {
+    if (character) {
+      let characterIndex = target.findIndex((element) => {
+        return element.name === character;
+      });
+      if (characterIndex != null) {
+        let newTargetArray = target;
+        newTargetArray.splice(characterIndex, 1);
+        setTarget(newTargetArray);
+      } else {
+        console.log("already found this one, dude, stop cheating");
+      }
+    }
+  }
+
+  function checkCharacterBox(character) {
     if (character) {
       const characterTarget = document.getElementById(character + "Checkbox");
       characterTarget.innerHTML = "&#10003;";
       characterTarget.style.fontSize = "2.2rem";
-      if (winner === true) {
-        messageBox.innerHTML = `YOU FOUND THEM 3 `;
+    }
+  }
+
+  function checkMsg(character) {
+    if (character) {
+      if (target.length == 0) {
+        return `YOU FOUND THEM 3 `;
       } else {
-        messageBox.innerHTML = `Congratulations ! You found ${character} `;
+        return `Congratulations ! You found ${character} `;
       }
     } else {
-      messageBox.innerHTML = "You missed the target, try again!";
+      return "You missed the target, try again!";
     }
   }
 
@@ -88,16 +110,20 @@ const Game = (props) => {
     return clickAbsoluteCoord;
   }
 
-  function clickOnCharacter(character) {
-    let clickAbsoluteCoord = getPositionRelToImg();
-    let result = checkCoord(clickAbsoluteCoord, character);
-    checkMsg(result);
+  function hideTargetingBox() {
     targetingBox.style.visibility = "hidden";
     targetingBoxClicked = false;
+  }
+
+  function clickOnCharacter(character) {
+    hideTargetingBox();
+    let clickAbsoluteCoord = getPositionRelToImg();
+    let result = checkCoord(clickAbsoluteCoord, character);
+    updateArray(result);
+    checkCharacterBox(result);
+    messageBox.innerHTML = checkMsg(result);
     messageBox.style.visibility = "visible";
-    if (foundChar.length == 3) {
-      console.log("you found them all");
-    } else {
+    if (target.length !== 0) {
       setTimeout(() => {
         messageBox.style.visibility = "hidden";
       }, 2000);
@@ -142,9 +168,7 @@ const Game = (props) => {
           HOMELESS
         </h3>
       </div>
-      <div id="messageBox">
-        <p>Congratulations you found</p>
-      </div>
+      <MessageBox />
     </div>
   );
 };
