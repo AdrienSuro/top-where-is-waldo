@@ -13,7 +13,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const q = query(collection(db, "characters"));
-
-export default q;
+export const db = getFirestore(app);
+export const q = query(collection(db, "characters"));

@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
-import q from "./Firebase";
+import { q, db } from "./Firebase";
 import { onSnapshot } from "firebase/firestore";
 import MessageBox from "./MessageBox";
+import { doc, setDoc } from "firebase/firestore";
 
 const Game = (props) => {
   const [intervalId, setIntervalId] = useState(null);
@@ -28,12 +29,6 @@ const Game = (props) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
-
-  // useEffect(() => {
-  //   if (gameComplete === true) {
-  //     clearInterval(setIntervalforTimer);
-  //   }
-  // }, [gameComplete]);
 
   useEffect(() => {
     if (foundChar.length === 3) {
