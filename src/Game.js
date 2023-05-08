@@ -9,6 +9,7 @@ import { onSnapshot } from "firebase/firestore";
 import MessageBox from "./MessageBox";
 
 const Game = (props) => {
+  const [intervalId, setIntervalId] = useState(null);
   const [target, setTarget] = useState([]);
   let targetingBoxClicked = false;
   const [clickX, setClickX] = useState(0);
@@ -28,15 +29,11 @@ const Game = (props) => {
     });
   }, []);
 
-  //Will create a simple array of target at the beginning
-  // useEffect(() => {})
-
-  useEffect(() => {
-    const intervalFn = setInterval(props.incrementSeconds, 1000);
-    return () => {
-      clearInterval(intervalFn);
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (gameComplete === true) {
+  //     clearInterval(setIntervalforTimer);
+  //   }
+  // }, [gameComplete]);
 
   useEffect(() => {
     if (foundChar.length === 3) {
@@ -47,6 +44,20 @@ const Game = (props) => {
       return;
     }
   }, [foundChar]);
+
+  useEffect(() => {
+    const intervalFn = setInterval(props.incrementSeconds, 1000);
+    setIntervalId(intervalFn);
+    return () => {
+      clearInterval(intervalFn);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (gameComplete === true) {
+      clearInterval(intervalId);
+    }
+  }, [gameComplete]);
 
   function displayMsg(completeness) {
     const messageBox = document.getElementById("messageBox");

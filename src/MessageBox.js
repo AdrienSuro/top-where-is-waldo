@@ -6,16 +6,22 @@ function MessageBox(props) {
     <div>
       {props.showMsg === true && (
         <>
-          <div id="messageBox">
-            <div>Congratulations, you found {props.currentCharacter}</div>
-            {props.gameComplete && (
-              <>
-                <div id="newGameBox">
-                  Let's start a<Link to="/">new game</Link>
-                </div>
-              </>
-            )}
-          </div>
+          {" "}
+          {props.gameComplete ? (
+            <>
+              <div id="messageBox">
+                Well done ! You found all the characters in{" "}
+                {props.elapsedSeconds} seconds ! You can add your score to the
+                best scores here or let's start a <Link to="/">new game</Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <div id="messageBox">
+                <div>Congratulations, you found {props.currentCharacter} !</div>
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
