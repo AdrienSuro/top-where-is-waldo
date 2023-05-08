@@ -7,7 +7,7 @@ function MessageBox(props) {
   function addScoreToFirebase(name) {
     if (name !== null) {
       setDoc(doc(db, "scores", name), {
-        score: props.elapsedSeconds,
+        score: props.userScore,
       });
     }
   }

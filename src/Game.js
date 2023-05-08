@@ -40,6 +40,8 @@ const Game = (props) => {
   useEffect(() => {
     if (gameComplete === true) {
       clearInterval(intervalId);
+      setUserScore(props.elapsedSeconds);
+      props.resetTimer();
     }
   }, [gameComplete]);
 
@@ -88,7 +90,6 @@ const Game = (props) => {
       if (target.length == 0) {
         setGameComplete(true);
         setShowMsg(true);
-        setUserScore(props.elapsedSeconds);
       } else {
         setCurrentCharacter(character);
         setShowMsg(true);

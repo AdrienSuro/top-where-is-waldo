@@ -13,6 +13,10 @@ const RouteSwitch = () => {
     setElapsedSeconds((prevElapsedSeconds) => prevElapsedSeconds + 1);
   }
 
+  function resetTimer() {
+    setElapsedSeconds(0);
+  }
+
   return (
     <BrowserRouter>
       <Nav elapsedSeconds={elapsedSeconds} />
@@ -25,6 +29,7 @@ const RouteSwitch = () => {
               incrementSeconds={incrementSeconds}
               elapsedSeconds={elapsedSeconds}
               setElapsedSeconds={setElapsedSeconds}
+              resetTimer={resetTimer}
             />
           }
         ></Route>
