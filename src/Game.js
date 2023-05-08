@@ -16,8 +16,6 @@ const Game = (props) => {
   const [clickX, setClickX] = useState(0);
   const [clickY, setClickY] = useState(0);
   const [rect, setRect] = useState("");
-  const [foundChar, setFoundChar] = useState([]);
-  const [winner, setWinner] = useState(false);
   const [showMsg, setShowMsg] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState("");
   const [gameComplete, setGameComplete] = useState(false);
@@ -29,16 +27,6 @@ const Game = (props) => {
       setTarget(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
-
-  useEffect(() => {
-    if (foundChar.length === 3) {
-      displayMsg("complete");
-      console.log("it has length 3 youhou");
-      setWinner(true);
-    } else {
-      return;
-    }
-  }, [foundChar]);
 
   useEffect(() => {
     const intervalFn = setInterval(props.incrementSeconds, 1000);
@@ -53,13 +41,6 @@ const Game = (props) => {
       clearInterval(intervalId);
     }
   }, [gameComplete]);
-
-  function displayMsg(completeness) {
-    const messageBox = document.getElementById("messageBox");
-    if (completeness) {
-      messageBox.innerHTML = "Congrats ! You found all 3 characters";
-    }
-  }
 
   function checkCoord(coord, character) {
     let result = "";
