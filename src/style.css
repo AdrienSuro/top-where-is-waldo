@@ -142,7 +142,6 @@ h1 {
 }
 
 #messageBox {
-    visibility: hidden;
     position: fixed;
     z-index: 99;
     width: 60%;
@@ -154,8 +153,6 @@ h1 {
     color: white;
     padding: 10px;
 }
-
-
 
 .characterBox {
     display: block;

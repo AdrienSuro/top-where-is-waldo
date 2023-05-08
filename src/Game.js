@@ -16,6 +16,9 @@ const Game = (props) => {
   const [rect, setRect] = useState("");
   const [foundChar, setFoundChar] = useState([]);
   const [winner, setWinner] = useState(false);
+  const [showMsg, setShowMsg] = useState(false);
+  const [currentCharacter, setCurrentCharacter] = useState("");
+  const [gameComplete, setGameComplete] = useState(false);
   const targetingBox = document.getElementById("targetingbox");
   const messageBox = document.getElementById("messageBox");
 
@@ -95,12 +98,14 @@ const Game = (props) => {
   function checkMsg(character) {
     if (character) {
       if (target.length == 0) {
-        return `YOU FOUND THEM 3 !!! In ${props.elapsedSeconds} seconds !`;
+        setGameComplete(true);
+        setShowMsg(true);
       } else {
-        return `Congratulations ! You found ${character} `;
+        setCurrentCharacter(character);
+        setShowMsg(true);
       }
     } else {
-      return "You missed the target, try again!";
+      setCurrentCharacter(character);
     }
   }
 
@@ -122,11 +127,10 @@ const Game = (props) => {
     let result = checkCoord(clickAbsoluteCoord, character);
     updateArray(result);
     checkCharacterBox(result);
-    messageBox.innerHTML = checkMsg(result);
-    messageBox.style.visibility = "visible";
+    checkMsg(result);
     if (target.length !== 0) {
       setTimeout(() => {
-        messageBox.style.visibility = "hidden";
+        setShowMsg(false);
       }, 2000);
     }
   }
@@ -169,7 +173,12 @@ const Game = (props) => {
           HOMELESS
         </h3>
       </div>
-      <MessageBox elapsedSeconds={props.elapsedSeconds} />
+      <MessageBox
+        elapsedSeconds={props.elapsedSeconds}
+        showMsg={showMsg}
+        currentCharacter={currentCharacter}
+        gameComplete={gameComplete}
+      />
     </div>
   );
 };
