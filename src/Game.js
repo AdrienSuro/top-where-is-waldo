@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import festival from "./img/festival.png";
 import { useState } from "react";
 import "./style.css";
@@ -94,7 +95,7 @@ const Game = (props) => {
   function checkMsg(character) {
     if (character) {
       if (target.length == 0) {
-        return `YOU FOUND THEM 3 `;
+        return `YOU FOUND THEM 3 !!! In ${props.elapsedSeconds} seconds !`;
       } else {
         return `Congratulations ! You found ${character} `;
       }
@@ -168,7 +169,7 @@ const Game = (props) => {
           HOMELESS
         </h3>
       </div>
-      <MessageBox />
+      <MessageBox elapsedSeconds={props.elapsedSeconds} />
     </div>
   );
 };

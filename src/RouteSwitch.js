@@ -11,8 +11,6 @@ const RouteSwitch = () => {
 
   function incrementSeconds() {
     setElapsedSeconds((prevElapsedSeconds) => prevElapsedSeconds + 1);
-    // console.log("inside increment Seconds from RouteSwitch");
-    // console.log("elapsed seconds are : " + elapsedSeconds);
   }
 
   return (
@@ -22,7 +20,12 @@ const RouteSwitch = () => {
         <Route path="/" element={<Start />}></Route>
         <Route
           path="/game"
-          element={<Game incrementSeconds={incrementSeconds} />}
+          element={
+            <Game
+              incrementSeconds={incrementSeconds}
+              elapsedSeconds={elapsedSeconds}
+            />
+          }
         ></Route>
         <Route path="/scores" element={<Scores />}></Route>
       </Routes>
