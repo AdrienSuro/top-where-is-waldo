@@ -19,6 +19,7 @@ const Game = (props) => {
   const [showMsg, setShowMsg] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState("");
   const [gameComplete, setGameComplete] = useState(false);
+  const [userScore, setUserScore] = useState(0);
   const targetingBox = document.getElementById("targetingbox");
   const messageBox = document.getElementById("messageBox");
 
@@ -87,6 +88,7 @@ const Game = (props) => {
       if (target.length == 0) {
         setGameComplete(true);
         setShowMsg(true);
+        setUserScore(props.elapsedSeconds);
       } else {
         setCurrentCharacter(character);
         setShowMsg(true);
@@ -162,7 +164,7 @@ const Game = (props) => {
         </h3>
       </div>
       <MessageBox
-        elapsedSeconds={props.elapsedSeconds}
+        userScore={userScore}
         showMsg={showMsg}
         currentCharacter={currentCharacter}
         gameComplete={gameComplete}

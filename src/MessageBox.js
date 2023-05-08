@@ -24,7 +24,7 @@ function MessageBox(props) {
                 <div>
                   You can add your time to the best scores or start a new game
                 </div>
-                <div>Your time : {props.elapsedSeconds} </div>
+                <div>Your time : {props.userScore} </div>
                 <div>
                   <h2>Enter your name</h2>
                   <input type="text" id="userNameInput"></input>
