@@ -5,7 +5,9 @@ function Character(props) {
   return (
     <div className="characterBox">
       <img src={props.image}></img>
-      <h3 id={props.name + "Checkbox"}>?</h3>
+      <h3 id={props.name + "Checkbox"} className="checkBox">
+        ?
+      </h3>
     </div>
   );
 }

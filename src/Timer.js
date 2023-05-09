@@ -17,7 +17,7 @@ function Timer(props) {
 
   return (
     <div className="timer">
-      your score :{minutes < 10 ? "0" + minutes : minutes} :{" "}
+      {minutes < 10 ? "0" + minutes : minutes} :{" "}
       {seconds < 10 ? "0" + seconds : seconds}
     </div>
   );

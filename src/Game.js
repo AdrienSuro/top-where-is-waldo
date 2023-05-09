@@ -42,6 +42,8 @@ const Game = (props) => {
       clearInterval(intervalId);
       setUserScore(props.elapsedSeconds);
       props.resetTimer();
+      // checkCharacterBox("empty", "reset");
+      uncheckCharacterBox();
     }
   }, [gameComplete]);
 
@@ -78,12 +80,28 @@ const Game = (props) => {
     }
   }
 
-  function checkCharacterBox(character) {
+  function checkCharacterBox(character, reset) {
+    if (reset) {
+      let checkboxes = Array.from(document.getElementsByClassName("checkBox"));
+      checkboxes.forEach((element) => {
+        element.innerHTML = "?";
+        element.style.fontSize = "1rem";
+      });
+      return;
+    }
     if (character) {
       const characterTarget = document.getElementById(character + "Checkbox");
       characterTarget.innerHTML = "&#10003;";
       characterTarget.style.fontSize = "2.2rem";
     }
+  }
+
+  function uncheckCharacterBox() {
+    let checkboxes = Array.from(document.getElementsByClassName("checkBox"));
+    checkboxes.forEach((element) => {
+      element.innerHTML = "?";
+      element.style.fontSize = "1.17em";
+    });
   }
 
   function checkMsg(character) {
