@@ -30,7 +30,7 @@ const Game = (props) => {
   }, []);
 
   useEffect(() => {
-    const intervalFn = setInterval(props.incrementSeconds, 10);
+    const intervalFn = setInterval(props.incrementSeconds, 1000);
     setIntervalId(intervalFn);
     return () => {
       clearInterval(intervalFn);
