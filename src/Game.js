@@ -72,7 +72,8 @@ const Game = (props) => {
         newTargetArray.splice(characterIndex, 1);
         setTarget(newTargetArray);
       } else {
-        console.log("already found this one, dude, stop cheating");
+        // Delete this line :
+        console.log("already found this one, dude, stop cheating, ");
       }
     }
   }
