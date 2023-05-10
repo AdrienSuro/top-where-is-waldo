@@ -6,8 +6,10 @@ import { doc, setDoc } from "firebase/firestore";
 function MessageBox(props) {
   function addScoreToFirebase(name) {
     if (name !== null) {
+      // remplacer name par UUID
       setDoc(doc(db, "scores", name), {
         score: props.userScore,
+        name: name,
       });
     }
   }

@@ -42,7 +42,6 @@ const Game = (props) => {
       clearInterval(intervalId);
       setUserScore(props.elapsedSeconds);
       props.resetTimer();
-      // checkCharacterBox("empty", "reset");
       uncheckCharacterBox();
     }
   }, [gameComplete]);
