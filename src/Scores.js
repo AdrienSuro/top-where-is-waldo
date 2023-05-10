@@ -27,27 +27,15 @@ const Scores = () => {
     for (let i = 0; i < bestScores.length; i++) {
       rows.push(
         <tr>
-          <td>{i + 1}</td>
+          <td>{i + 1}.</td>
           <td>{sortedScores[i].name}</td>
-          <td>{sortedScores[i].score}</td>
+          <td>{sortedScores[i].score} seconds</td>
         </tr>
       );
     }
     setRows(rows);
     console.log(bestScores);
   }, [bestScores]);
-
-  // function
-
-  // myArray.sort((a, b) => {
-
-  //   if (a.score > b.score) return -1;
-
-  //   if (a.score < b.score) return 1;
-
-  //   return 0
-
-  //   })
 
   return (
     <div style={{ position: "relative" }}>
@@ -60,11 +48,6 @@ const Scores = () => {
             <th>Score</th>
           </tr>
           {rows.map((element) => element)}
-          <tr>
-            <td>1.</td>
-            <td>Louise</td>
-            <td>7:30</td>
-          </tr>
         </table>
       </div>
     </div>

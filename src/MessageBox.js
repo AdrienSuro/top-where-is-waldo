@@ -35,11 +35,15 @@ function MessageBox(props) {
                       const userNameInput =
                         document.getElementById("userNameInput");
                       addScoreToFirebase(userNameInput.value);
+                      userNameInput.value = "";
                     }}
                   >
                     Submit score
                   </button>
                 </div>
+                <Link to="/scores">
+                  <h2>See best scores</h2>
+                </Link>
                 <Link to="/">
                   <h2>New Game</h2>
                 </Link>
