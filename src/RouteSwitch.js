@@ -8,6 +8,9 @@ import Scores from "./Scores";
 
 const RouteSwitch = () => {
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [startMs, setStartMs] = useState(0);
+  const [endMs, setEndMs] = useState(0);
+  const [userMs, setUserMs] = useState(0);
 
   function incrementSeconds() {
     setElapsedSeconds((prevElapsedSeconds) => prevElapsedSeconds + 1);
@@ -19,7 +22,7 @@ const RouteSwitch = () => {
 
   return (
     <BrowserRouter>
-      <Nav elapsedSeconds={elapsedSeconds} />
+      <Nav elapsedSeconds={elapsedSeconds} startMs={startMs} endMs={endMs} />
       <Routes>
         <Route path="/" element={<Start />}></Route>
         <Route
@@ -30,6 +33,12 @@ const RouteSwitch = () => {
               elapsedSeconds={elapsedSeconds}
               setElapsedSeconds={setElapsedSeconds}
               resetTimer={resetTimer}
+              setStartMs={setStartMs}
+              setEndMs={setEndMs}
+              endMs={endMs}
+              startMs={startMs}
+              userMs={userMs}
+              setUserMs={setUserMs}
             />
           }
         ></Route>

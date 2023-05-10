@@ -39,12 +39,25 @@ const Game = (props) => {
 
   useEffect(() => {
     if (gameComplete === true) {
+      props.setEndMs(new Date().getTime());
       clearInterval(intervalId);
       setUserScore(props.elapsedSeconds);
       props.resetTimer();
       uncheckCharacterBox();
     }
   }, [gameComplete]);
+
+  useEffect(() => {
+    props.setStartMs(new Date().getTime());
+  }, []);
+
+  useEffect(() => {
+    console.log(props.startMs);
+    console.log(props.endMs);
+    console.log(props.endMs - props.startMs);
+    props.setUserMs(props.endMs - props.startMs);
+    console.log(props.userMs);
+  }, [props.endMs]);
 
   function checkCoord(coord, character) {
     let result = null;
@@ -184,6 +197,7 @@ const Game = (props) => {
       </div>
       <MessageBox
         userScore={userScore}
+        userMs={props.userMs}
         showMsg={showMsg}
         currentCharacter={currentCharacter}
         gameComplete={gameComplete}
