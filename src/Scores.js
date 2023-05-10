@@ -17,19 +17,37 @@ const Scores = () => {
   }, []);
 
   useEffect(() => {
+    const sortedScores = bestScores;
+    sortedScores.sort((a, b) => {
+      if (a.score < b.score) return -1;
+      if (a.score > b.score) return 1;
+      return 0;
+    });
     const rows = [];
     for (let i = 0; i < bestScores.length; i++) {
       rows.push(
         <tr>
           <td>{i + 1}</td>
-          <td>{bestScores[i].name}</td>
-          <td>{bestScores[i].score}</td>
+          <td>{sortedScores[i].name}</td>
+          <td>{sortedScores[i].score}</td>
         </tr>
       );
     }
     setRows(rows);
     console.log(bestScores);
   }, [bestScores]);
+
+  // function
+
+  // myArray.sort((a, b) => {
+
+  //   if (a.score > b.score) return -1;
+
+  //   if (a.score < b.score) return 1;
+
+  //   return 0
+
+  //   })
 
   return (
     <div style={{ position: "relative" }}>
