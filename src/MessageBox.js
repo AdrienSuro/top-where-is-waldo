@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { q, db } from "./Firebase";
 import { doc, setDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 function MessageBox(props) {
   function addScoreToFirebase(name) {
     if (name !== null) {
       // remplacer name par UUID
-      setDoc(doc(db, "scores", name), {
+      setDoc(doc(db, "scores", uuidv4()), {
         score: props.userScore,
         name: name,
       });
