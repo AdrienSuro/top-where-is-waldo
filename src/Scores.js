@@ -17,17 +17,17 @@ const Scores = () => {
   }, []);
 
   useEffect(() => {
-    // const rows = [];
-    // for (let i = 0; i < bestScores.length; i++) {
-    //   rows.push(
-    //     <tr>
-    //       <td>{i + 1}</td>
-    //       <td>{bestScores[i]}</td>
-    //       <td>{bestScores[i].score}</td>
-    //     </tr>
-    //   );
-    // }
-    // setRows(rows);
+    const rows = [];
+    for (let i = 0; i < bestScores.length; i++) {
+      rows.push(
+        <tr>
+          <td>{i + 1}</td>
+          <td>{bestScores[i].name}</td>
+          <td>{bestScores[i].score}</td>
+        </tr>
+      );
+    }
+    setRows(rows);
     console.log(bestScores);
   }, [bestScores]);
 
