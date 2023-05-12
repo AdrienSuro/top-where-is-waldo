@@ -11,25 +11,30 @@ const RouteSwitch = () => {
   const [startMs, setStartMs] = useState(0);
   const [endMs, setEndMs] = useState(0);
   const [userMs, setUserMs] = useState(0);
-
-  function incrementSeconds() {
-    setElapsedSeconds((prevElapsedSeconds) => prevElapsedSeconds + 1);
-  }
+  const [countSeconds, setCountSeconds] = useState(0);
 
   function resetTimer() {
     setElapsedSeconds(0);
+    setUserMs(0);
   }
 
   return (
     <BrowserRouter>
-      <Nav elapsedSeconds={elapsedSeconds} startMs={startMs} endMs={endMs} />
+      <Nav
+        elapsedSeconds={elapsedSeconds}
+        startMs={startMs}
+        endMs={endMs}
+        userMs={userMs}
+        countSeconds={countSeconds}
+        setCountSeconds={setCountSeconds}
+      />
       <Routes>
         <Route path="/" element={<Start />}></Route>
         <Route
           path="/game"
           element={
             <Game
-              incrementSeconds={incrementSeconds}
+              // incrementSeconds={incrementSeconds}
               elapsedSeconds={elapsedSeconds}
               setElapsedSeconds={setElapsedSeconds}
               resetTimer={resetTimer}
@@ -39,6 +44,8 @@ const RouteSwitch = () => {
               startMs={startMs}
               userMs={userMs}
               setUserMs={setUserMs}
+              countSeconds={countSeconds}
+              setCountSeconds={setCountSeconds}
             />
           }
         ></Route>

@@ -29,7 +29,10 @@ const Scores = () => {
         <tr>
           <td>{i + 1}.</td>
           <td>{sortedScores[i].name}</td>
-          <td>{sortedScores[i].score} seconds</td>
+          <td>
+            {parseInt(sortedScores[i].score / 1000, 10)},
+            {sortedScores[i].score % 1000}s
+          </td>
         </tr>
       );
     }

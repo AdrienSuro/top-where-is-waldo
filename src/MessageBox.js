@@ -8,7 +8,7 @@ function MessageBox(props) {
   function addScoreToFirebase(name) {
     if (name !== null) {
       setDoc(doc(db, "scores", uuidv4()), {
-        score: props.userScore,
+        score: props.userMs,
         name: name,
       });
     }
@@ -26,7 +26,7 @@ function MessageBox(props) {
                 <div>
                   You can add your time to the best scores or start a new game
                 </div>
-                <div>Your time : {props.userMs} </div>
+                <div>Your time : {parseInt(props.userMs / 1000, 10)} </div>
                 <div>
                   <h2>Enter your name</h2>
                   <input type="text" id="userNameInput"></input>

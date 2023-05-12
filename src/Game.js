@@ -29,13 +29,28 @@ const Game = (props) => {
     });
   }, []);
 
+  // useEffect(() => {
+  //   const intervalFn = setInterval(props.getSeconds, 1000);
+  //   setIntervalId(intervalFn);
+  //   return () => {
+  //     clearInterval(intervalFn);
+  //   };
+  // }, []);
+
+  // set Countseconds
   useEffect(() => {
-    const intervalFn = setInterval(props.incrementSeconds, 1000);
+    const intervalFn = setInterval(incrementFn, 1000);
     setIntervalId(intervalFn);
     return () => {
       clearInterval(intervalFn);
     };
-  }, []);
+  }, [props.startMs]);
+
+  function incrementFn() {
+    let currentTime = new Date().getTime();
+    let elapsedMs = currentTime - props.startMs;
+    props.setCountSeconds(parseInt(elapsedMs / 1000, 10));
+  }
 
   useEffect(() => {
     if (gameComplete === true) {
@@ -48,16 +63,16 @@ const Game = (props) => {
   }, [gameComplete]);
 
   useEffect(() => {
-    props.setStartMs(new Date().getTime());
-  }, []);
+    if (gameComplete === true) {
+      let elapsedMs = props.endMs - props.startMs;
+      props.setUserMs(elapsedMs);
+    }
+  }, [props.endMs]);
 
   useEffect(() => {
-    console.log(props.startMs);
-    console.log(props.endMs);
-    console.log(props.endMs - props.startMs);
-    props.setUserMs(props.endMs - props.startMs);
-    console.log(props.userMs);
-  }, [props.endMs]);
+    props.setStartMs(new Date().getTime());
+    console.log("setting startMs");
+  }, []);
 
   function checkCoord(coord, character) {
     let result = null;

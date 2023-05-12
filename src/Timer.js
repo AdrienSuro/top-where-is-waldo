@@ -6,14 +6,17 @@ function Timer(props) {
   const [minutes, setMinutes] = useState(0);
 
   useEffect(() => {
-    if (props.elapsedSeconds >= 60) {
-      setSeconds(props.elapsedSeconds % 60);
-      setMinutes(parseInt(props.elapsedSeconds / 60, 10));
-    } else if (props.elapsedSeconds < 60) {
-      setSeconds(props.elapsedSeconds);
+    if (props.countSeconds >= 60) {
+      setSeconds(props.countSeconds % 60);
+      setMinutes(parseInt(props.countSeconds / 60, 10));
+      console.log(props.countSeconds);
+      console.log("startMs = " + props.startMs);
+    } else if (props.countSeconds < 60) {
+      setSeconds(props.countSeconds);
       setMinutes(0);
+      console.log("hi");
     }
-  }, [props.elapsedSeconds]);
+  }, [props.countSeconds]);
 
   return (
     <div className="timer">
