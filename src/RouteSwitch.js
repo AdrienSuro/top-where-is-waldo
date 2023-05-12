@@ -7,36 +7,24 @@ import Start from "./Start";
 import Scores from "./Scores";
 
 const RouteSwitch = () => {
-  const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const [startMs, setStartMs] = useState(0);
   const [endMs, setEndMs] = useState(0);
   const [userMs, setUserMs] = useState(0);
   const [countSeconds, setCountSeconds] = useState(0);
 
   function resetTimer() {
-    setElapsedSeconds(0);
     setUserMs(0);
   }
 
   return (
     <BrowserRouter>
-      <Nav
-        elapsedSeconds={elapsedSeconds}
-        startMs={startMs}
-        endMs={endMs}
-        userMs={userMs}
-        countSeconds={countSeconds}
-        setCountSeconds={setCountSeconds}
-      />
+      <Nav countSeconds={countSeconds} />
       <Routes>
         <Route path="/" element={<Start />}></Route>
         <Route
           path="/game"
           element={
             <Game
-              // incrementSeconds={incrementSeconds}
-              elapsedSeconds={elapsedSeconds}
-              setElapsedSeconds={setElapsedSeconds}
               resetTimer={resetTimer}
               setStartMs={setStartMs}
               setEndMs={setEndMs}

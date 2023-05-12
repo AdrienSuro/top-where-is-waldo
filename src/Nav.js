@@ -20,15 +20,7 @@ const Nav = (props) => {
       <Link className="title" to="/">
         <h1>FESTIWALDO</h1>
       </Link>
-      <Timer
-        elapsedSeconds={props.elapsedSeconds}
-        userMS={props.usermS}
-        getSeconds={props.getSeconds}
-        startMs={props.startMs}
-        endMs={props.endMs}
-        countSeconds={props.countSeconds}
-        setCountSeconds={props.setCountSeconds}
-      />
+      <Timer countSeconds={props.countSeconds} />
       <div className="charactersDiv">
         <h2>FIND THESE :</h2>
         <Character image={first} name="amerindian" />

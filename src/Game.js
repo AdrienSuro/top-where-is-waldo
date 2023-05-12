@@ -19,9 +19,7 @@ const Game = (props) => {
   const [showMsg, setShowMsg] = useState(false);
   const [currentCharacter, setCurrentCharacter] = useState("");
   const [gameComplete, setGameComplete] = useState(false);
-  const [userScore, setUserScore] = useState(0);
   const targetingBox = document.getElementById("targetingbox");
-  const messageBox = document.getElementById("messageBox");
 
   useEffect(() => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -56,7 +54,6 @@ const Game = (props) => {
     if (gameComplete === true) {
       props.setEndMs(new Date().getTime());
       clearInterval(intervalId);
-      setUserScore(props.elapsedSeconds);
       props.resetTimer();
       uncheckCharacterBox();
     }
@@ -211,7 +208,6 @@ const Game = (props) => {
         </h3>
       </div>
       <MessageBox
-        userScore={userScore}
         userMs={props.userMs}
         showMsg={showMsg}
         currentCharacter={currentCharacter}

@@ -9,12 +9,9 @@ function Timer(props) {
     if (props.countSeconds >= 60) {
       setSeconds(props.countSeconds % 60);
       setMinutes(parseInt(props.countSeconds / 60, 10));
-      console.log(props.countSeconds);
-      console.log("startMs = " + props.startMs);
     } else if (props.countSeconds < 60) {
       setSeconds(props.countSeconds);
       setMinutes(0);
-      console.log("hi");
     }
   }, [props.countSeconds]);
 
