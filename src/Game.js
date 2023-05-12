@@ -12,7 +12,7 @@ import { doc, setDoc } from "firebase/firestore";
 const Game = (props) => {
   const [intervalId, setIntervalId] = useState(null);
   const [target, setTarget] = useState([]);
-  let targetingBoxClicked = false;
+  const [targetingBoxClicked, setTargetingBoxClicked] = useState(false);
   const [clickX, setClickX] = useState(0);
   const [clickY, setClickY] = useState(0);
   const [rect, setRect] = useState("");
@@ -27,15 +27,6 @@ const Game = (props) => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const intervalFn = setInterval(props.getSeconds, 1000);
-  //   setIntervalId(intervalFn);
-  //   return () => {
-  //     clearInterval(intervalFn);
-  //   };
-  // }, []);
-
-  // set Countseconds
   useEffect(() => {
     const intervalFn = setInterval(incrementFn, 1000);
     setIntervalId(intervalFn);
@@ -68,7 +59,6 @@ const Game = (props) => {
 
   useEffect(() => {
     props.setStartMs(new Date().getTime());
-    console.log("setting startMs");
   }, []);
 
   function checkCoord(coord, character) {
@@ -97,9 +87,6 @@ const Game = (props) => {
         let newTargetArray = target;
         newTargetArray.splice(characterIndex, 1);
         setTarget(newTargetArray);
-      } else {
-        // Delete this line :
-        console.log("already found this one, dude, stop cheating, ");
       }
     }
   }
@@ -152,7 +139,7 @@ const Game = (props) => {
 
   function hideTargetingBox() {
     targetingBox.style.visibility = "hidden";
-    targetingBoxClicked = false;
+    setTargetingBoxClicked(false);
   }
 
   function clickOnCharacter(character) {
@@ -176,16 +163,15 @@ const Game = (props) => {
 
   function showTargetingBox(x, y, e) {
     const targetingBox = document.getElementById("targetingbox");
-    if (targetingBoxClicked === false) {
+    if (targetingBoxClicked == false) {
+      setTargetingBoxClicked(true);
       setRect(e.target.getBoundingClientRect());
       targetingBox.style.top = y - 140 + "px";
       targetingBox.style.left = x + "px";
       targetingBox.style.visibility = "visible";
-      targetingBoxClicked = true;
       updateClickCoord(x, y);
     } else if (targetingBoxClicked === true) {
-      targetingBox.style.visibility = "hidden";
-      targetingBoxClicked = false;
+      hideTargetingBox();
     }
   }
 

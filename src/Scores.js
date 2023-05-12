@@ -44,6 +44,7 @@ const Scores = () => {
     <div style={{ position: "relative" }}>
       <img className="festivalImgDimmed" id="dimmedAgain" src={festival}></img>
       <div id="scoreBox">
+        <h1>Best Scores</h1>
         <table id="scoreTable">
           <tr>
             <th>Position</th>
